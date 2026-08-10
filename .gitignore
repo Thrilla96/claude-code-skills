@@ -1,0 +1,18 @@
+# --- Local rollback snapshots stay out of git (ruling 2026-08-07) ---
+# Snapshots are local rollback floors, not repo history. The repo holds the real
+# version; backups stay on disk. Mirrors the rule in the 01-HPV repo.
+*.pre_*
+*.pre-*
+*-pre[0-9]*
+*.SUPERSEDED*
+
+# --- Cruft ---
+__pycache__/
+*.pyc
+.DS_Store
+
+# NOT ignored, deliberately: log-decision/log_decision_PATCHED.py
+# It is a 2026-07-23 fork of the substrate writer, 96 lines divergent, whose
+# ALLOWED_LANES is the stale two-lane set. It should be deleted, not silenced —
+# and an ignore rule would hide it rather than resolve it. Leaving it untracked
+# keeps it visible as `??` until Bill rules on it. See D24.
